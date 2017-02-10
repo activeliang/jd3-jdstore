@@ -1,5 +1,7 @@
 class Admin::ProductsController < ApplicationController
-
+  before_action :authenticate_user!
+  before_action :admin_required
+  layout "admin"
 
   def index
     @products = Product.all
@@ -31,7 +33,7 @@ class Admin::ProductsController < ApplicationController
       redirect_to admin_products_path
     else
       render :edit
-    end 
+    end
   end
 
 
